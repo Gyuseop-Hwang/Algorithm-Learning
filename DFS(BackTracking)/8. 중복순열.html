@@ -1,0 +1,28 @@
+</head>
+
+<body>
+  <script>
+    function solution(n, m) {
+      const answer = [];
+      // const check = Array.from({length : n + 1}, () => 0)
+      const temp = [];
+      function DFS(L) {
+        if (L === m) {
+          answer.push(temp.slice(0))
+        } else {
+          for (let i = 1; i <= n; i++) {
+            temp[L] = i;
+            DFS(L + 1);
+          }
+        }
+      }
+
+      DFS(0)
+      return answer;
+    }
+
+    console.log(solution(3, 2));
+  </script>
+</body>
+
+</html>
