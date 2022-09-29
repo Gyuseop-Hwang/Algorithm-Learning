@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, r) {
+
+      const check = Array.from({ length: n + 1 }, () => Array(r))
+
+      let answer = [];
+      function DFS(n, r) {
+        if (check[n][r]) return check[n][r];
+        if (r === 0 || n === r) return 1;
+
+        return check[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r)
+      }
+
+      return DFS(n, r)
+    }
+
+    console.log(solution(33, 19));
+  </script>
+</body>
+
+</html>
