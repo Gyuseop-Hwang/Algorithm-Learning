@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, f) {
+      // const permutations = [];
+      let answer;
+      const check = Array.from({ length: n + 1 }, () => 0)
+      const temp = [];
+      let flag = false;
+      function DFS(L) {
+        if (flag) return;
+        if (L === n) {
+          // console.log(temp)
+          let sum = 0;
+          temp.forEach((x, i) => {
+            sum += x * combiHelper(n - 1, i)
+          })
+          if (sum === f) {
+            // console.log(temp)
+            answer = temp.slice();
+            flag = true;
+          }
+
+        } else {
+          for (let i = 1; i <= n; i++) {
+            if (check[i] === 0) {
+              check[i] = 1;
+              temp[L] = i;
+              DFS(L + 1);
+              check[i] = 0;
+            }
+          }
+        }
+      }
+      function combiHelper(n, m) {
+        const check = Array.from({ length: n + 1 }, () => Array(m + 1));
+        function combi(n, m) {
+          if (check[n][m]) return check[n][m];
+          if (m === 0 || n === m) return 1;
+          return check[n][m] = combi(n - 1, m - 1) + combi(n - 1, m)
+        }
+
+        return combi(n, m)
+      }
+
+
+
+      DFS(0);
+      return answer;
+    }
+
+    console.log(solution(4, 16));
+  </script>
+</body>
+
+</html>
