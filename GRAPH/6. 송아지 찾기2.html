@@ -9,15 +9,16 @@
   <script>
     function solution(s, e) {
       let answer = 0;
-      let check = Array.from({ length: 10001 }, () => 0);
+      const check = Array.from({ length: 10001 }, () => 0);
       const queue = [];
       queue.push(s);
       check[s] = 1;
       let l = 0;
       while (queue.length) {
-        let len = queue.length;
-        for (let i = 0; i < len; i++) {
-          let x = queue.shift();
+        const length = queue.length;
+        for (let i = 0; i < length; i++) {
+          const x = queue.shift();
+
           for (let nx of [x - 1, x + 1, x + 5]) {
             if (nx === e) return l + 1;
             if (nx > 0 && nx <= 10000 && check[nx] === 0) {
@@ -28,9 +29,10 @@
         }
         l++;
       }
+
     }
 
-    console.log(solution(5, 14));
+    console.log(solution(8, 3));
   </script>
 </body>
 

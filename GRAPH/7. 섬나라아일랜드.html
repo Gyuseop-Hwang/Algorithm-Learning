@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(board) {
+      let answer = 0;
+      const dx = [-1, -1, -1, 0, 1, 1, 1, 0];
+      const dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+
+      const length = board.length;
+      function DFS(x, y) {
+        board[x][y] = 0;
+        for (let i = 0; i < 8; i++) {
+
+          const nx = x + dx[i];
+          const ny = y + dy[i];
+          if (nx >= 0 && nx < length && ny >= 0 && ny < length && board[nx][ny] === 1) {
+            DFS(nx, ny);
+          }
+        }
+      }
+
+      for (let i = 0; i < length; i++) {
+        for (let j = 0; j < length; j++) {
+          if (board[i][j] !== 0) {
+            answer++;
+
+            DFS(i, j);
+          }
+        }
+      }
+
+      return answer;
+    }
+
+    let arr =
+      [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0]
+      ];
+
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>

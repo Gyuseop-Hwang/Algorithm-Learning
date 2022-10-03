@@ -9,33 +9,26 @@
   <script>
     function solution(s, e) {
       let answer = 0;
-      let check = Array.from({ length: 10001 }, () => 0)
-      let dis = Array.from({ length: 10001 }, () => 0)
-      let queue = [];
-      ch[s] = 1;
+      const dis = Array.from({ length: 10001 }, () => 0);
+      const check = Array.from({ length: 10001 }, () => 0)
+      const queue = [];
+      check[s] = 1;
       queue.push(s);
       while (queue.length) {
-        let x = queue.shift();
-        // queue.push(x - 1, x + 1, x + 5)
-        for (let nx of [x - 1, x + 1, x + 5]) {
-          if (nx === e) return dis[x] + 1;
-          if (nx >= 0 && nx < 10000 && check[nx] === 0) {
-            check[nx] = 1;
-            queue.push(nx)
-            dis[nx] = dis[x] + 1;
+        const v = queue.shift();
+        for (let nv of [v - 1, v + 1, v + 5]) {
+          if (nv === e) return dis[v] + 1;
+          if (nv > 0 && nv <= 10000 && check[nv] === 0) {
+            check[nv] = 1;
+            queue.push(nv);
+            dis[nv] = dis[v] + 1;
           }
         }
       }
 
-      function DFS(L, s) {
-
-
-      }
-
-      return answer;
     }
 
-    console.log(solution(8, 3));
+    console.log(solution(5, 14));
   </script>
 </body>
 
