@@ -14,6 +14,7 @@
       function DFS(L, s) {
         if (L === m) {
           answer.push(temp.slice())
+          console.log(temp.slice())
         } else {
           for (let i = s; i <= n; i++) {
             temp[L] = i;
